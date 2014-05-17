@@ -5,7 +5,7 @@ get['no_notification'] - посетить, если не хотим слать �
 -> html + js
 
 
-GET /chat_recv/<ключ адресата>
+GET /chat/<ключ адресата>/recv
 cookies['key'] - мой ключ
 
 -> {
@@ -15,7 +15,7 @@ cookies['key'] - мой ключ
 }
 
 
-POST /chat_send/<ключ адресата>
+POST /chat/<ключ адресата>/send
 cookies['key'] - мой ключ
 post['message'] = 'Privet'
 

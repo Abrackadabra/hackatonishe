@@ -34,7 +34,6 @@ def register(request):
 
 @require_GET
 def chat(request, addressee):
-    print('chat')
     try:
         key = request.COOKIES['key']
         pony = Pony.objects.get(key=key)
@@ -61,7 +60,6 @@ def chat(request, addressee):
 
 @require_GET
 def chat_recv(request, addressee):
-    print('chat_recv')
     try:
         key = request.COOKIES['key']
         pony = Pony.objects.get(key=key)
@@ -69,9 +67,9 @@ def chat_recv(request, addressee):
         pony_to = Pony.objects.get(key=addressee)
 
         if pony not in _message_queues:
-            _message_queues[pony] = Queue()
+            _message_queues[(pony, pony_to)] = Queue()
 
-        queue = _message_queues[pony]
+        queue = _message_queues[(pony, pony_to)]
 
         messages = []
 
@@ -91,7 +89,6 @@ def chat_recv(request, addressee):
 
 @require_POST
 def chat_send(request, addressee):
-    print('chat_send')
     try:
         key = request.COOKIES['key']
         print('key', key)
@@ -106,9 +103,9 @@ def chat_send(request, addressee):
         print('message', message)
 
         if pony_to not in _message_queues:
-            _message_queues[pony_to] = Queue()
+            _message_queues[(pony, pony_to)] = Queue()
 
-        _message_queues[pony_to].put(message)
+        _message_queues[(pony, pony_to)].put(message)
 
         return HttpResponse('ok')
     except Exception as e:
@@ -124,7 +121,6 @@ def torrent(request):
 
         text = request.POST['text']
         link = request.POST['link']
-
 
         torrent = Torrent(pony=pony, text=text, link=link)
         torrent.save()
