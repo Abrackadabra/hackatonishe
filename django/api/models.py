@@ -1,12 +1,11 @@
 from django.db import models
 
 
-class Key(models.Model):
+class Pony(models.Model):
     key = models.TextField()
 
-
-class Pony(models.Model):
-    key = models.ForeignKey(Key)
+    def __str__(self):
+        return str(self.key)
 
 
 class Torrent(models.Model):

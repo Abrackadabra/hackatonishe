@@ -7,16 +7,17 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_entryashka'),
+        ('api', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Chat',
+            name='Entryashka',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
-                ('entryashka', models.ForeignKey(to='api.Entryashka', to_field='id')),
-                ('link', models.TextField()),
+                ('active_pony', models.ForeignKey(to='api.Pony', to_field='id')),
+                ('passive_pony', models.ForeignKey(to='api.Pony', to_field='id')),
+                ('torrent', models.ForeignKey(to='api.Torrent', to_field='id')),
             ],
             options={
             },
