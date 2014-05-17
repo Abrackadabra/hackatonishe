@@ -32,7 +32,7 @@ def register(request):
             return HttpResponse(key)
 
 
-# @require_GET
+@require_GET
 def chat(request, addressee):
     print('chat')
     try:
@@ -59,7 +59,7 @@ def chat(request, addressee):
         return HttpResponseBadRequest('bad')
 
 
-# @require_GET
+@require_GET
 def chat_recv(request, addressee):
     print('chat_recv')
     try:
@@ -89,7 +89,7 @@ def chat_recv(request, addressee):
         return HttpResponseBadRequest()
 
 
-# @require_POST
+@require_POST
 def chat_send(request, addressee):
     print('chat_send')
     try:
