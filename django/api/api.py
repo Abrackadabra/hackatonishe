@@ -58,35 +58,6 @@ def chat(request, addressee):
         return HttpResponseBadRequest('bad')
 
 
-@require_GET
-def chat_recv(request, addressee):
-    try:
-        key = request.COOKIES['key']
-        pony = Pony.objects.get(key=key)
-
-        pony_to = Pony.objects.get(key=addressee)
-
-        if pony not in _message_queues:
-            _message_queues[(pony, pony_to)] = Queue()
-
-        queue = _message_queues[(pony, pony_to)]
-
-        messages = []
-
-        for i in range(3):
-            if queue.empty():
-                break
-            else:
-                messages.append(queue.get())
-
-        return JsonResponse({
-            'messages': messages
-        })
-    except Exception as e:
-        print(e)
-        return HttpResponseBadRequest()
-
-
 @require_POST
 def chat_send(request, addressee):
     try:
@@ -102,15 +73,52 @@ def chat_send(request, addressee):
         message = request.POST['message']
         print('message', message)
 
-        if pony_to not in _message_queues:
-            _message_queues[(pony, pony_to)] = Queue()
+        queue_id = (pony, pony_to)
 
-        _message_queues[(pony, pony_to)].put(message)
+        print('queue_id', queue_id)
+
+        if queue_id not in _message_queues:
+            _message_queues[queue_id] = Queue()
+
+        _message_queues[queue_id].put(message)
 
         return HttpResponse('ok')
     except Exception as e:
         print(e)
         return HttpResponseBadRequest('bad')
+
+
+@require_GET
+def chat_recv(request, addressee):
+    try:
+        key = request.COOKIES['key']
+        pony = Pony.objects.get(key=key)
+
+        pony_from = Pony.objects.get(key=addressee)
+
+        queue_id = (pony_from, pony)
+
+        print('queue_id', queue_id)
+
+        if queue_id not in _message_queues:
+            _message_queues[queue_id] = Queue()
+
+        queue = _message_queues[queue_id]
+
+        messages = []
+
+        for i in range(3):
+            if queue.empty():
+                break
+            else:
+                messages.append(queue.get())
+
+        return JsonResponse({
+            'messages': messages
+        })
+    except Exception as e:
+        print(e)
+        return HttpResponseBadRequest()
 
 
 @require_POST
