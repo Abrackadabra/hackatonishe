@@ -1,4 +1,8 @@
-/char/.../.../recv
+GET /chat/.../...
+html + js
+
+
+GET /chat/.../.../recv
 
 {
 	"messages": [
@@ -6,13 +10,13 @@
 	]
 }
 
-/chat/.../.../send
+GET /chat/.../.../send
 
 {
 	"message": "Privet"
 }
 
-/notifications
+GET /notifications
 
 {
 	"notifications": [
@@ -25,5 +29,9 @@
 	]
 }
 
-/torrent?text="MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv"
+POST /torrent?text="MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv"
+
+GET /register
+PUPUUKVOMQQRKJJGRSEQLYLJFGOCEA
+
 
