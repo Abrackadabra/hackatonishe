@@ -1,5 +1,6 @@
 GET /chat/<ключ адресата>
 cookies['key'] - мой ключ
+get['no_notification'] - посетить, если не хотим слать уведомления
 
 -> html + js
 

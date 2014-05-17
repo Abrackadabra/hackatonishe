@@ -39,12 +39,15 @@ def chat(request, addressee):
 
         print(pony, 'talks to', pony_to)
 
-        if pony not in _notification_queues:
-            _notification_queues[pony] = Queue()
+        if 'no_notification' not in request.GET:
+            if pony not in _notification_queues:
+                _notification_queues[pony] = Queue()
 
-        _notification_queues[pony].put({
-            'user': pony_to
-        })
+            queue = _notification_queues[pony]
+
+            queue.put({
+                'user': pony_to
+            })
 
         return HttpResponse('chatochat')
     except Exception as e:
@@ -132,16 +135,16 @@ def notifications(request):
 
         queue = _notification_queues[pony]
 
-        anticipants = []
+        notifications = []
 
         for i in range(3):
             if queue.empty():
                 break
             else:
-                anticipants.append(queue.get())
+                notifications.append(queue.get())
 
         return JsonResponse({
-            'notifications': anticipants
+            'notifications': notifications
         })
     except Exception as e:
         print(e)
