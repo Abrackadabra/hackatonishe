@@ -2,6 +2,7 @@ from queue import Queue
 import random
 
 from django.http.response import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.views.decorators.http import require_POST, require_GET
 
 from api.models import Pony, Torrent
 
@@ -19,6 +20,7 @@ def _gen_key():
     return key
 
 
+@require_GET
 def register(request):
     while True:
         key = _gen_key()
@@ -30,7 +32,9 @@ def register(request):
             return HttpResponse(key)
 
 
+# @require_GET
 def chat(request, addressee):
+    print('chat')
     try:
         key = request.COOKIES['key']
         pony = Pony.objects.get(key=key)
@@ -55,7 +59,9 @@ def chat(request, addressee):
         return HttpResponseBadRequest('bad')
 
 
+# @require_GET
 def chat_recv(request, addressee):
+    print('chat_recv')
     try:
         key = request.COOKIES['key']
         pony = Pony.objects.get(key=key)
@@ -83,14 +89,21 @@ def chat_recv(request, addressee):
         return HttpResponseBadRequest()
 
 
+# @require_POST
 def chat_send(request, addressee):
+    print('chat_send')
     try:
         key = request.COOKIES['key']
+        print('key', key)
+
         pony = Pony.objects.get(key=key)
+        print('pony', pony)
 
         pony_to = Pony.objects.get(key=addressee)
+        print('pony_to', pony_to)
 
         message = request.POST['message']
+        print('message', message)
 
         if pony_to not in _message_queues:
             _message_queues[pony_to] = Queue()
@@ -103,6 +116,7 @@ def chat_send(request, addressee):
         return HttpResponseBadRequest('bad')
 
 
+@require_POST
 def torrent(request):
     try:
         key = request.COOKIES['key']
@@ -121,10 +135,12 @@ def torrent(request):
         return HttpResponseBadRequest('bad')
 
 
+@require_GET
 def main(request):
     return HttpResponse('main is not here')
 
 
+@require_GET
 def notifications(request):
     try:
         key = request.COOKIES['key']
