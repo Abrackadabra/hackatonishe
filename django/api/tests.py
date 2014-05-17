@@ -2,7 +2,7 @@ from django.test import TestCase
 import requests
 import json
 
-_address = 'http://192.168.0.105:8000/'
+_address = 'http://abra0.com:8000/'
 
 
 def _register():
