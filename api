@@ -1,0 +1,45 @@
+GET /chat/<ключ адресата>
+cookies['key'] - мой ключ
+get['no_notification'] - посетить, если не хотим слать уведомления
+
+-> html + js
+
+
+GET /chat/<ключ адресата>/recv
+cookies['key'] - мой ключ
+
+-> {
+	"messages": [
+		"Privet"
+	]
+}
+
+
+POST /chat/<ключ адресата>/send
+cookies['key'] - мой ключ
+post['message'] = 'Privet'
+
+
+GET /notifications
+cookies['key'] - мой ключ
+
+-> {
+	"notifications": [
+		{
+			"user": "dsadsa"
+		},
+		{
+			"user": "dsadsa"
+		}
+	]
+}
+
+
+POST /torrent
+cookies['key'] - мой ключ
+post['text'] = "MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv"
+post['link'] = "thepiratebay.huehue/..."
+
+
+GET /register
+-> PUPUUKVOMQQRKJJGRSEQLYLJFGOCEA
