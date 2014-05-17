@@ -24,6 +24,21 @@ def _send(my_key, your_key, message):
     return requests.post(_address + 'chat/' + your_key + '/send', cookies=cookies, params=params)
 
 
+def _torrent(my_key, text, link):
+    cookies = {'key': my_key}
+    params = {'text': text, 'link': link}
+    return requests.post(_address + 'torrent', cookies=cookies, params=params)
+
+
+def _chat(my_key, your_key, no_notifications):
+    cookies = {'key': my_key}
+    params = {}
+    if no_notifications:
+        params['no_notifications'] = ""
+
+    return requests.get(_address + 'chat/' + your_key, cookies=cookies, params=params)
+
+
 class TestRegister(TestCase):
     def test(self):
         response = _register()
@@ -50,6 +65,18 @@ class ApiTest(TestCase):
 
     def test_send(self):
         response = _send(self.my_key, self.your_key, 'kakoi-to_pidor')
+        self.assertIs(response.status_code, 200)
+        pass
+
+    def test_torrent(self):
+        response = _torrent(self.my_key, "MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv", "thepiratebay.huehue/...")
+        self.assertIs(response.status_code, 200)
+        pass
+
+    def test_chat(self):
+        response = _chat(self.my_key, self.your_key, True)
+        self.assertIs(response.status_code, 200)
+        response = _chat(self.my_key, self.your_key, False)
         self.assertIs(response.status_code, 200)
         pass
 
