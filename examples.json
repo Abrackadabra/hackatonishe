@@ -1,0 +1,29 @@
+/char/.../.../recv
+
+{
+	"messages": [
+		"Privet"
+	]
+}
+
+/chat/.../.../send
+
+{
+	"message": "Privet"
+}
+
+/notifications
+
+{
+	"notifications": [
+		{
+			"user": "dsadsa"
+		},
+		{
+			"user": "dsadsa"
+		}
+	]
+}
+
+/torrent?text="MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv"
+

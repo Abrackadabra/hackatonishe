@@ -1,5 +1,6 @@
 import random
 from django.http.response import HttpResponse, HttpResponseRedirect
+from api.models import Key
 
 __author__ = 'abra'
 
@@ -12,24 +13,30 @@ def _gen_key():
 
 
 def register(request):
-    # while True:
-    #     key = _gen_key()
-        # if
+    while True:
+        key = _gen_key()
+        if len(Key.objects.filter(key=key)) != 0:
+            continue
+        obj = Key(key=key)
+        obj.save()
+        break
 
-    return HttpResponse()
+    return HttpResponse(key)
 
 
 def init_chat(request):
     key = 'testotosao'
 
-    return HttpResponseRedirect('/chat/' + key)
+    return HttpResponseRedirect('/api/chat/' + key)
 
 
 def chat(request, link):
-    print(link)
+    # print(link)
 
     return HttpResponse('chatochat')
 
 
 def torrent(request):
+
+
     return HttpResponse()
