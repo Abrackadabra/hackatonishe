@@ -1,5 +1,6 @@
 from django.test import TestCase
 import requests
+import json
 
 _address = 'http://192.168.0.105:8000/'
 
@@ -68,6 +69,12 @@ class ApiTest(TestCase):
         print(response.text)
         self.assertIs(response.status_code, 200)
         pass
+
+    def test_send_recv(self):
+        message = 'kakoi-to_pidor'
+        _send(self.my_key, self.your_key, message)
+        response = _recv(self.your_key, self.my_key)
+        self.assertIs(json.loads(response.text)['messages'][0], message)
 
     def test_torrent(self):
         response = _torrent(self.my_key, "MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv", "thepiratebay.huehue/...")
