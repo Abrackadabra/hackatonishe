@@ -33,9 +33,9 @@ def register(request):
 def chat(request, addressee):
     try:
         key = request.COOKIES['key']
-        pony = Pony.get(key=key)
+        pony = Pony.objects.get(key=key)
 
-        pony_to = Pony.get(key=addressee)
+        pony_to = Pony.objects.get(key=addressee)
 
         print(pony, 'talks to', pony_to)
 
@@ -58,9 +58,9 @@ def chat(request, addressee):
 def chat_recv(request, addressee):
     try:
         key = request.COOKIES['key']
-        pony = Pony.get(key=key)
+        pony = Pony.objects.get(key=key)
 
-        pony_to = Pony.get(key=addressee)
+        pony_to = Pony.objects.get(key=addressee)
 
         if pony not in _message_queues:
             _message_queues[pony] = Queue()
@@ -86,9 +86,9 @@ def chat_recv(request, addressee):
 def chat_send(request, addressee):
     try:
         key = request.COOKIES['key']
-        pony = Pony.get(key=key)
+        pony = Pony.objects.get(key=key)
 
-        pony_to = Pony.get(key=addressee)
+        pony_to = Pony.objects.get(key=addressee)
 
         message = request.POST['message']
 
@@ -100,7 +100,7 @@ def chat_send(request, addressee):
         return HttpResponse('ok')
     except Exception as e:
         print(e)
-        return HttpResponseBadRequest()
+        return HttpResponseBadRequest('bad')
 
 
 def torrent(request):
@@ -148,4 +148,4 @@ def notifications(request):
         })
     except Exception as e:
         print(e)
-        return HttpResponseBadRequest()
+        return HttpResponseBadRequest('bad')
