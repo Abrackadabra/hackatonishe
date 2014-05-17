@@ -20,14 +20,14 @@ def _recv(my_key, your_key):
 
 def _send(my_key, your_key, message):
     cookies = {'key': my_key}
-    params = {'message': message}
-    return requests.post(_address + 'chat/' + your_key + '/send', cookies=cookies, params=params)
+    data = {'message': message}
+    return requests.post(_address + 'chat/' + your_key + '/send', cookies=cookies, data=data)
 
 
 def _torrent(my_key, text, link):
     cookies = {'key': my_key}
-    params = {'text': text, 'link': link}
-    return requests.post(_address + 'torrent', cookies=cookies, params=params)
+    data = {'text': text, 'link': link}
+    return requests.post(_address + 'torrent', cookies=cookies, data=data)
 
 
 def _chat(my_key, your_key, no_notifications):
@@ -65,6 +65,7 @@ class ApiTest(TestCase):
 
     def test_send(self):
         response = _send(self.my_key, self.your_key, 'kakoi-to_pidor')
+        print(response.text)
         self.assertIs(response.status_code, 200)
         pass
 
