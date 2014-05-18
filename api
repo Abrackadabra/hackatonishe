@@ -30,10 +30,9 @@ cookies['key'] - мой ключ
 -> {
 	"notifications": [
 		{
-			"user": "dsadsa"
-		},
-		{
-			"user": "dsadsa"
+			"user": "dsadsa",
+			"link": "",
+			"text": ""
 		}
 	]
 }
