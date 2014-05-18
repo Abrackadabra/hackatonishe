@@ -112,7 +112,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
       },
       success: function(data) {
         console.log('notifications get');
-        pendingDownloads = pendingNotifications.concat(data);
+        pendingNotifications = pendingNotifications.concat(data.notifications);
 
         chrome.browserAction.setBadgeText({'text': pendingNotifications.length.toString()});
       }

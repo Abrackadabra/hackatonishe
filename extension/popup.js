@@ -7,7 +7,7 @@ $(document).ready(function(){
     if(response.notifications.length > 0) {
       var items = []
       $.each(response.notifications, function(key, value) {
-        items.push('<li>User <b>' + value.name + '</b> saw that you downloaded <b>' + value.text + '</b> and wants to chat!<br><a class="chatlink" href="#" data-userkey="' + value.user + '">Accept</a></li>');
+        items.push('<li>User <b>' + value.user + '</b> saw that you downloaded <b>' + value.torrent + '</b> and wants to chat!<br><a class="chatlink" href="#" data-userkey="' + value.user + '">Accept</a></li>');
       });
 
       $('#notifications').html(items.join(''));
