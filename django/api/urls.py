@@ -14,6 +14,7 @@ urlpatterns = patterns(
 
     url(r'^notifications$', api.notifications),
     url(r'^torrent$', api.torrent),
+    url(r'^torrents$', api.torrents),
     url(r'^$', api.main),
 
 )

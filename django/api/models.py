@@ -14,15 +14,21 @@ class Torrent(models.Model):
     link = models.TextField()
     text = models.TextField()
 
+    def as_dict(self):
+        return {
+            'user': self.pony.key,
+            'link': self.link
+        }
 
-class Entryashka(models.Model):
-    active_pony = models.ForeignKey(Pony, related_name='entryashki_as_active')
-    passive_pony = models.ForeignKey(Pony, related_name='entryashki_as_passive')
-
-    torrent = models.ForeignKey(Torrent)
-
-
-class Chat(models.Model):
-    entryashka = models.ForeignKey(Entryashka)
-
-    link = models.TextField()
+#
+# class Entryashka(models.Model):
+#     active_pony = models.ForeignKey(Pony, related_name='entryashki_as_active')
+#     passive_pony = models.ForeignKey(Pony, related_name='entryashki_as_passive')
+#
+#     torrent = models.ForeignKey(Torrent)
+#
+#
+# class Chat(models.Model):
+#     entryashka = models.ForeignKey(Entryashka)
+#
+#     link = models.TextField()

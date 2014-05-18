@@ -58,18 +58,52 @@ def chat(request, addressee):
         return HttpResponseBadRequest('bad')
 
 
+@require_POST
+def chat_send(request, addressee):
+    try:
+        key = request.COOKIES['key']
+        print('key', key)
+
+        pony = Pony.objects.get(key=key)
+        print('pony', pony)
+
+        pony_to = Pony.objects.get(key=addressee)
+        print('pony_to', pony_to)
+
+        message = request.POST['message']
+        print('message', message)
+
+        queue_id = (pony, pony_to)
+
+        print('queue_id', queue_id)
+
+        if queue_id not in _message_queues:
+            _message_queues[queue_id] = Queue()
+
+        _message_queues[queue_id].put(message)
+
+        return HttpResponse('ok')
+    except Exception as e:
+        print(e)
+        return HttpResponseBadRequest('bad')
+
+
 @require_GET
 def chat_recv(request, addressee):
     try:
         key = request.COOKIES['key']
         pony = Pony.objects.get(key=key)
 
-        pony_to = Pony.objects.get(key=addressee)
+        pony_from = Pony.objects.get(key=addressee)
 
-        if pony not in _message_queues:
-            _message_queues[(pony, pony_to)] = Queue()
+        queue_id = (pony_from, pony)
 
-        queue = _message_queues[(pony, pony_to)]
+        print('queue_id', queue_id)
+
+        if queue_id not in _message_queues:
+            _message_queues[queue_id] = Queue()
+
+        queue = _message_queues[queue_id]
 
         messages = []
 
@@ -87,27 +121,14 @@ def chat_recv(request, addressee):
         return HttpResponseBadRequest()
 
 
-@require_POST
-def chat_send(request, addressee):
+@require_GET
+def torrents(requests):
     try:
-        key = request.COOKIES['key']
-        print('key', key)
+        torrents = Torrent.objects.order_by('-id')[:3]
 
-        pony = Pony.objects.get(key=key)
-        print('pony', pony)
-
-        pony_to = Pony.objects.get(key=addressee)
-        print('pony_to', pony_to)
-
-        message = request.POST['message']
-        print('message', message)
-
-        if pony_to not in _message_queues:
-            _message_queues[(pony, pony_to)] = Queue()
-
-        _message_queues[(pony, pony_to)].put(message)
-
-        return HttpResponse('ok')
+        return JsonResponse({
+            'torrents': [torrent.as_dict() for torrent in torrents]
+        })
     except Exception as e:
         print(e)
         return HttpResponseBadRequest('bad')
