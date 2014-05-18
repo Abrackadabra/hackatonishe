@@ -50,9 +50,9 @@ def chat_init(request, addressee):
         pony_to = Pony.objects.get(key=addressee)
 
         if pony not in _notification_queues:
-            _notification_queues[pony] = Queue()
+            _notification_queues[pony_to] = Queue()
 
-        queue = _notification_queues[pony]
+        queue = _notification_queues[pony_to]
 
         queue.put({
             'user': pony_to.key,
