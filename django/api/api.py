@@ -154,6 +154,8 @@ def torrent(request):
         text = request.POST['text']
         link = request.POST['link']
 
+        print(request.POST)
+
         torrent = Torrent(pony=pony, text=text, link=link)
         torrent.save()
 
