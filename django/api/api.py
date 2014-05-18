@@ -148,7 +148,7 @@ def torrents(requests):
 @require_POST
 def torrent(request):
     try:
-        key = request.COOKIES['key']
+        key = request.POST['key']
         pony = Pony.objects.get(key=key)
 
         text = request.POST['text']

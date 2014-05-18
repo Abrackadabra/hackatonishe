@@ -36,7 +36,7 @@ cookies['key'] - мой ключ
 
 
 POST /torrent
-cookies['key'] - мой ключ
+post['key'] - мой ключ
 post['text'] = "MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv"
 post['link'] = "thepiratebay.huehue/..."
 
