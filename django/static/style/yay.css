@@ -185,7 +185,8 @@ h1{
 	box-sizing: border-box;
 	width: 600px;
 	height: auto;
-	min-height: 500px;
+	min-height: 400px;
+	margin-bottom: 30px;
 	padding: 15px;
 }
 
