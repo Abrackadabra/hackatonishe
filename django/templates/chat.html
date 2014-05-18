@@ -12,7 +12,7 @@
         return matches ? decodeURIComponent(matches[1]) : undefined 
     }
     $( document ).ready(function() {
-        host = 'http://0.0.0.0:5555';
+        host = 'http://0.0.0.0:5555'; 
         var my_id = getCookie('key');
         urlparts = document.URL.split('/');
         var stranger_id = urlparts[urlparts.length - 1]
