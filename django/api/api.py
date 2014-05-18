@@ -1,8 +1,9 @@
 from queue import Queue
 import random
 
-from django.http.response import HttpResponse, HttpResponseBadRequest, JsonResponse
-from django.shortcuts import render, render_to_response
+from django.http.response import HttpResponse, HttpResponseBadRequest, JsonResponse, \
+    HttpResponseRedirect
+from django.shortcuts import render_to_response
 from django.views.decorators.http import require_POST, require_GET
 
 from api.models import Pony, Torrent
@@ -35,25 +36,30 @@ def register(request):
 
 @require_GET
 def chat(request, addressee):
+    return render_to_response('chat.html')
+
+
+@require_POST
+def chat_init(request, addressee):
     try:
         key = request.COOKIES['key']
+        torrent = request.POST['torrent']
+
         pony = Pony.objects.get(key=key)
 
         pony_to = Pony.objects.get(key=addressee)
 
-        print(pony, 'talks to', pony_to)
+        if pony not in _notification_queues:
+            _notification_queues[pony] = Queue()
 
-        if 'no_notification' not in request.GET:
-            if pony not in _notification_queues:
-                _notification_queues[pony] = Queue()
+        queue = _notification_queues[pony]
 
-            queue = _notification_queues[pony]
+        queue.put({
+            'user': pony_to,
+            'torrent': torrent
+        })
 
-            queue.put({
-                'user': pony_to
-            })
-
-        return render_to_response('chat.html')
+        return HttpResponseRedirect('/chat/' + addressee)
     except Exception as e:
         print(e)
         return HttpResponseBadRequest('bad')
@@ -63,6 +69,7 @@ def chat(request, addressee):
 def chat_send(request, addressee):
     try:
         key = request.COOKIES['key']
+
         print('key', key)
 
         pony = Pony.objects.get(key=key)
@@ -93,13 +100,12 @@ def chat_send(request, addressee):
 def chat_recv(request, addressee):
     try:
         key = request.COOKIES['key']
+
         pony = Pony.objects.get(key=key)
 
         pony_from = Pony.objects.get(key=addressee)
 
         queue_id = (pony_from, pony)
-
-        print('queue_id', queue_id)
 
         if queue_id not in _message_queues:
             _message_queues[queue_id] = Queue()
@@ -113,6 +119,8 @@ def chat_recv(request, addressee):
                 break
             else:
                 messages.append(queue.get())
+
+        print('messages', messages)
 
         return JsonResponse({
             'messages': messages
@@ -138,11 +146,13 @@ def torrents(requests):
 @require_POST
 def torrent(request):
     try:
-        key = request.COOKIES['key']
+        key = request.POST['key']
         pony = Pony.objects.get(key=key)
 
         text = request.POST['text']
         link = request.POST['link']
+
+        print(request.POST)
 
         torrent = Torrent(pony=pony, text=text, link=link)
         torrent.save()
@@ -161,7 +171,7 @@ def main(request):
 @require_GET
 def notifications(request):
     try:
-        key = request.COOKIES['key']
+        key = request.GET['key']
         pony = Pony.objects.get(key=key)
 
         if pony not in _notification_queues:

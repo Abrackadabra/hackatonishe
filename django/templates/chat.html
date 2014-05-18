@@ -1,24 +1,19 @@
+{% load staticfiles %}
 <html>
 <head>
     <title>
-        Chat
+        чятик)))0
     </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "style/yay.css" %}">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
-    function getCookie(name) {
-        var matches = document.cookie.match(new RegExp(
-          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ))
-        return matches ? decodeURIComponent(matches[1]) : undefined 
-    }
     $( document ).ready(function() {
-        host = 'http://0.0.0.0:5555'; 
-        var my_id = getCookie('key');
-        urlparts = document.URL.split('/');
-        var stranger_id = urlparts[urlparts.length - 1]
+
         setInterval( function()
         {
-            $.get( host + "/chat/" + stranger_id + "/recv", function( data ) {
+            console.log(document.URL + "recv")
+            $.get( document.URL + "recv", function( data ) {
                 $.each(data['messages'], function(index, value) {
                     $('#box').html("<b> Stranger: </b>" + value + '</br>' + $('#box').html());
                 })
@@ -28,8 +23,9 @@
         send = function() {
             $('#box').html("<b> You: </b>" + $('#msg').val() + '</br>' + $('#box').html());
             $.ajax({
+                headers: {'Cookie' : document.cookie},
                 type: "POST",
-                url: host + "/chat/" + stranger_id + "/send",
+                url: document.URL + "send",
                 data: {'message': $('#msg').val() },
                 success: function() {
                     console.log('sent');
@@ -43,11 +39,24 @@
 </head>
 
 <body>
-<textarea id='msg'></textarea>
-<a onclick='send()' href='#'> SEND </a>
-
-<div id='box'>
+<div class="container_12">
+    <div class="grid_11">
+        <div class="logo"></div>
+        <h1>ENTRYASHKA</h1><br>
+    </div>
+    <div class="grid_1">
+        blia 228
+    </div>
+    <div class="clear"></div>
+    <div class="grid_12, mazafaka"></div>
+    <div class="clear"></div>
+    <div class="grid_12">
+        <div class="chat-container">
+            <textarea id='msg' placeholder="Your message..." name="hui"></textarea>
+            <a onclick='send()' href='javascript: return(false);' class="send">SEND</a>
+            <div id='box'></div>
+        </div>
+    </div>
 </div>
 </body>
-
 </html>

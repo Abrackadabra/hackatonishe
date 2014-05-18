@@ -1,0 +1,277 @@
+body {
+  min-width: 960px;
+  font-size: 25px;
+  font-family: Myriad Pro;
+  padding-top: 30px;
+  color: #666666;
+}
+
+body, code, dl, dd, form, pre {
+margin: 0;
+}
+abbr, acronym {
+cursor: help;
+border-bottom: 1px dotted #999;
+}
+address, cite, dfn {
+font-style: normal;
+}
+code, pre {
+white-space: pre-wrap;
+}
+img {
+vertical-align: bottom;
+}
+td, th, textarea {
+vertical-align: top;
+}
+input, select, button {
+overflow: visible;
+vertical-align: middle;
+}
+legend {
+color: #000;
+margin: 0 0 -2px;
+padding: 0;
+}
+li {
+display: block;
+list-style: none;
+}
+address, blockquote, h1, h2, h3, h4, h5, h6, fieldset, p, ol, ul {
+margin: 0;
+padding: 0;
+}
+th, h1, h2, h3, h4, h5, h6 {
+font-weight: normal;
+}
+
+.logo{
+	display: block;
+	width:90px;
+	height:90px;
+	background-image: url(lal.png);
+	background-position: center;
+	background-size: 100%;
+	float: left;
+	margin-right: 30px;
+}
+
+.notification{
+	width: 65px;
+	height: 65px;
+	background-color: #6699cc;
+	background-image: url(not.png);
+	background-position: center;
+	background-size: 80%;
+	background-repeat: no-repeat;
+	border-radius: 5px;
+	position: relative;
+	right: 0px;
+}
+
+.mazafaka{
+	background-color: #6699cc;
+	height: 25px;
+	margin: 30px 0;
+}
+
+h1{
+	margin: -7px;
+}
+
+.feed{
+	width: 630px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.entryashka{
+	width: 580px;
+	height: 100px;
+	line-height: 100px;
+	margin: 20px auto;
+	background-color: #EFEFEF;
+	border-radius: 5px;
+	padding-left: 40px;
+}
+
+.get-torrent{
+	display: inline-block;
+	width: 45px;
+	height: 45px;
+	background-image: url(torrent.png);
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin:0 15px;
+	vertical-align: middle;
+}
+
+.get-torrent:hover{
+	background-image: url(torrent-hover.png);
+}
+
+.hide-torrent{
+	display: inline-block;
+	width: 45px;
+	height: 45px;
+	background-image: url(cross.png);
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+
+.hide-torrent:hover{
+	background-image: url(cross-hover.png);
+}
+
+.yay{
+	display: inline-block;
+	width: auto;
+	line-height: 100px;
+	float: left;
+	text-decoration: none;
+	color: #666666;
+	font-size: 25px;
+	margin-right: 35px;
+	vertical-align: middle;
+}
+
+.yay:hover{
+	color: #000;
+}
+
+.chat-container{
+	width: 600px;
+	margin: 0 auto;
+}
+
+#msg{
+	width: 600px;
+	height: 100px;
+	resize: none;
+	margin-bottom: 15px;
+	outline: none;
+	padding: 15px;
+	font-size: 20px;
+}
+
+#box{
+	border:1px solid #999;
+	box-sizing: border-box;
+	width: 600px;
+	height: auto;
+	min-height: 500px;
+	padding: 15px;
+}
+
+.send{
+	width: 100px;
+	height: 40px;
+	display: inline-block;
+	text-decoration: none;
+	background-color: #6699cc;
+	border-radius: 5px;
+	color: #fff;
+	text-align: center;
+	line-height: 40px;
+	position:absolute;
+	margin-top: -63px;
+	margin-right: 180px; 
+	right: 0px;
+}
+
+
+/* Containers
+----------------------------------------------------------------------------------------------------*/
+.container_12 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+}
+
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+	display:inline;
+	float: left;
+	position: relative;
+}
+
+.grid_12{
+	margin-top: 15px;
+}
+
+/* Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .grid_1 {
+	width:60px;
+}
+
+.container_12 .grid_2 {
+	width:140px;
+}
+
+.container_12 .grid_3 {
+	width:220px;
+}
+
+.container_12 .grid_4 {
+	width:300px;
+}
+
+.container_12 .grid_5 {
+	width:380px;
+}
+
+.container_12 .grid_6 {
+	width:460px;
+}
+
+.container_12 .grid_7 {
+	width:540px;
+}
+
+.container_12 .grid_8 {
+	width:620px;
+}
+
+.container_12 .grid_9 {
+	width:700px;
+}
+
+.container_12 .grid_10 {
+	width:780px;
+}
+
+.container_12 .grid_11 {
+	width:860px;
+}
+
+.container_12 .grid_12 {
+	width:940px;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
