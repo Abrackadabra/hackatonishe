@@ -36,7 +36,9 @@ def register(request):
 @require_GET
 def chat(request, addressee):
     try:
-        key = request.COOKIES['key']
+        # key = request.COOKIES['key']
+
+        key = 'EEBYFOJUFBULNLTXLDZSSGNZREHXOR'
         pony = Pony.objects.get(key=key)
 
         pony_to = Pony.objects.get(key=addressee)
@@ -62,7 +64,8 @@ def chat(request, addressee):
 @require_POST
 def chat_send(request, addressee):
     try:
-        key = request.COOKIES['key']
+        # key = request.COOKIES['key']
+        key = 'EEBYFOJUFBULNLTXLDZSSGNZREHXOR'
         print('key', key)
 
         pony = Pony.objects.get(key=key)
@@ -92,7 +95,8 @@ def chat_send(request, addressee):
 @require_GET
 def chat_recv(request, addressee):
     try:
-        key = request.COOKIES['key']
+        # key = request.COOKIES['key']
+        key = 'EEBYFOJUFBULNLTXLDZSSGNZREHXOR'
         pony = Pony.objects.get(key=key)
 
         pony_from = Pony.objects.get(key=addressee)
