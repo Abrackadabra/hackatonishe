@@ -121,6 +121,23 @@ def chat_recv(request, addressee):
         return HttpResponseBadRequest()
 
 
+@require_GET
+def torrents(requests):
+    try:
+        torrents = Torrent.objects.order_by('-id')[:3]
+
+        # dicts =
+
+        # print()
+
+        return JsonResponse({
+            'torrents': [torrent.as_dict() for torrent in torrents]
+        })
+    except Exception as e:
+        print(e)
+        return HttpResponseBadRequest('bad')
+
+
 @require_POST
 def torrent(request):
     try:

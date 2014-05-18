@@ -43,3 +43,23 @@ post['link'] = "thepiratebay.huehue/..."
 
 GET /register
 -> PUPUUKVOMQQRKJJGRSEQLYLJFGOCEA
+
+
+GET /torrents
+->
+{
+	"torrents": [
+		{
+			"user": "JWAIUDJWLZPWZYSBCQQVXLPDJMVSRH",
+			"link": "thepiratebay.huehue/..."
+		},
+		{
+			"user": "BDKOQCEUBRPDVKPCLUGUKBDZDFSWXC",
+			"link": "thepiratebay.huehue/..."
+		},
+		{
+			"user": "XGQKRQEITAGNFGRKTJQIUYIZCGJFRC",
+			"link": "thepiratebay.huehue/..."
+		}
+	]
+}
