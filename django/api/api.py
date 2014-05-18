@@ -136,7 +136,7 @@ def torrents(requests):
         torrents = Torrent.objects.order_by('-id')[:5]
 
         return JsonResponse({
-            'torrents': reversed([torrent.as_dict() for torrent in torrents])
+            'torrents': list(reversed([torrent.as_dict() for torrent in torrents]))
         })
     except Exception as e:
         print(e)
