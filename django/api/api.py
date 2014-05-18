@@ -126,10 +126,6 @@ def torrents(requests):
     try:
         torrents = Torrent.objects.order_by('-id')[:3]
 
-        # dicts =
-
-        # print()
-
         return JsonResponse({
             'torrents': [torrent.as_dict() for torrent in torrents]
         })
