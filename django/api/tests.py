@@ -74,7 +74,7 @@ class ApiTest(TestCase):
         message = 'kakoi-to_pidor'
         _send(self.my_key, self.your_key, message)
         response = _recv(self.your_key, self.my_key)
-        self.assertIs(json.loads(response.text)['messages'][0], message)
+        self.assertEqual(json.loads(response.text)['messages'][0], message)
 
     def test_torrent(self):
         response = _torrent(self.my_key, "MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv", "thepiratebay.huehue/...")
