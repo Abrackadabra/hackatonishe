@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>
+        Chat
+    </title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        host = 'http://0.0.0.0:5555'
+        var my_id = 'VEKYAMBAUROQPFPFELBZANSEVECLAO'
+        var stranger_id = 'strgr'
+        setInterval( function()
+        {
+            $.get( host + "/chat/" + stranger_id + "/recv", function( data ) {
+                $.each(data['messages'], function(index, value) {
+                    $('#box').html("<b> Stranger: </b>" + value + '</br>' + $('#box').html());
+                })
+            });
+            
+        }, 1000);
+        send = function() {
+            $('#box').html("<b> You: </b>" + $('#msg').val() + '</br>' + $('#box').html());
+            $.ajax({
+                type: "POST",
+                url: host + "/chat/" + stranger_id + "/send",
+                data: {'message': $('#msg').val() },
+                success: function() {
+                    console.log('sent');
+                }
+              ,
+            });
+            $('#msg').val('')
+        }
+    });
+    </script>
+</head>
+
+<body>
+<textarea id='msg'></textarea>
+<a onclick='send()' href='#'> SEND </a>
+
+<div id='box'>
+</div>
+</body>
+
+</html>
