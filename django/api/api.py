@@ -61,7 +61,7 @@ def chat_init(request, addressee):
 
         return HttpResponseRedirect('/chat/' + addressee)
     except Exception as e:
-        print(e)
+        print('exception', e)
         return HttpResponseBadRequest('bad')
 
 
