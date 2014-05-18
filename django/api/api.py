@@ -2,6 +2,7 @@ from queue import Queue
 import random
 
 from django.http.response import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.shortcuts import render, render_to_response
 from django.views.decorators.http import require_POST, require_GET
 
 from api.models import Pony, Torrent
@@ -52,7 +53,7 @@ def chat(request, addressee):
                 'user': pony_to
             })
 
-        return HttpResponse('chatochat')
+        return render_to_response('chat.html')
     except Exception as e:
         print(e)
         return HttpResponseBadRequest('bad')

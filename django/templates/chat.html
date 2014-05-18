@@ -6,9 +6,8 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
     $( document ).ready(function() {
-        host = 'http://0.0.0.0:5555'
-        var my_id = 'VEKYAMBAUROQPFPFELBZANSEVECLAO'
-        var stranger_id = 'strgr'
+        host = 'http://127.0.0.1:8000'
+        var stranger_id = 'PJSBKIRODTRMUQADOBKCAKIHGUMVXN'
         setInterval( function()
         {
             $.get( host + "/chat/" + stranger_id + "/recv", function( data ) {
@@ -16,7 +15,7 @@
                     $('#box').html("<b> Stranger: </b>" + value + '</br>' + $('#box').html());
                 })
             });
-            
+
         }, 1000);
         send = function() {
             $('#box').html("<b> You: </b>" + $('#msg').val() + '</br>' + $('#box').html());
