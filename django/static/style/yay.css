@@ -57,6 +57,23 @@ font-weight: normal;
 	margin-right: 30px;
 }
 
+.logo:hover{
+	background-image: url(logo.png);
+}
+
+.small-text{
+	font-size: 14px;
+	width: 550px;
+	height: auto;
+}
+
+.title{
+	font-size: 35px;
+	text-decoration: none;
+	color: #666666;
+	margin-top: -5px;
+}
+
 .notification{
 	width: 65px;
 	height: 65px;
@@ -182,7 +199,6 @@ h1{
 	margin-right: 180px; 
 	right: 0px;
 }
-
 
 /* Containers
 ----------------------------------------------------------------------------------------------------*/
