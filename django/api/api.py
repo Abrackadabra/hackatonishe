@@ -59,7 +59,7 @@ def chat_init(request, addressee):
         queue = _notification_queues[pony_to]
 
         queue.put({
-            'user': pony_to.key,
+            'user': pony.key,
             'torrent': torrent
         })
 
@@ -178,6 +178,8 @@ def notifications(request):
         key = request.GET['key']
         pony = Pony.objects.get(key=key)
 
+        print(pony)
+
         if pony not in _notification_queues:
             _notification_queues[pony] = Queue()
 
@@ -190,6 +192,8 @@ def notifications(request):
                 break
             else:
                 notifications.append(queue.get())
+
+        print(notifications)
 
         return JsonResponse({
             'notifications': notifications

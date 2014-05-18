@@ -27,8 +27,7 @@
     "alarms",
     "downloads",
     "cookies",
-    "http://abra0.com/",
-    "http://192.168.1.41/"
+    "http://192.168.43.180/"
   ],
   "content_security_policy": "script-src 'self' chrome-extension-resource: 'unsafe-eval'; default-src 'self'; connect-src *",
   "manifest_version": 2,

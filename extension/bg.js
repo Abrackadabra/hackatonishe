@@ -9,7 +9,7 @@ if (typeof String.prototype.startsWith != 'function') {
 userKey = '';
 chrome.cookies.get(
   {
-    'url': 'http://abra0.com',
+    'url': 'http://192.168.43.180',
     'name': 'key'
   },
   function(data) {
@@ -22,7 +22,7 @@ chrome.cookies.get(
           userKey = response;
           chrome.cookies.set(
             {
-              'url': 'http://abra0.com',
+              'url': 'http://192.168.43.180',
               'name': 'key',
               'value': response
             },
