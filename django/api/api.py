@@ -133,10 +133,10 @@ def chat_recv(request, addressee):
 @require_GET
 def torrents(requests):
     try:
-        torrents = Torrent.objects.order_by('-id')[:3]
+        torrents = Torrent.objects.order_by('-id')[:5]
 
         return JsonResponse({
-            'torrents': [torrent.as_dict() for torrent in torrents]
+            'torrents': reversed([torrent.as_dict() for torrent in torrents])
         })
     except Exception as e:
         print(e)
