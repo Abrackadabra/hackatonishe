@@ -1,0 +1,41 @@
+{
+  "name": "Download Filename Controller",
+  "description": "Download Filename Controller",
+  "version": "0.1",
+  "background": {
+    "scripts": [
+      "common.js",
+      "bg.js",
+      "jquery.min.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery.min.js",
+        "common.js",
+        "magnet.js"
+      ]
+    }
+  ],
+  "options_page": "options.html",
+  "permissions": [
+    "tabs",
+    "alarms",
+    "downloads",
+    "cookies",
+    "http://abra0.com/",
+    "http://192.168.1.41/"
+  ],
+  "content_security_policy": "script-src 'self' chrome-extension-resource: 'unsafe-eval'; default-src 'self'; connect-src *",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "KTP",
+    "default_popup": "popup.html"
+  }
+}
