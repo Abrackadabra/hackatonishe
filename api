@@ -1,6 +1,5 @@
 GET /chat/<ключ адресата>
 cookies['key'] - мой ключ
-get['no_notification'] - посетить, если не хотим слать уведомления
 
 -> html + js
 
@@ -18,6 +17,11 @@ cookies['key'] - мой ключ
 POST /chat/<ключ адресата>/send
 cookies['key'] - мой ключ
 post['message'] = 'Privet'
+
+
+POST /chat/<ключ адресата>/init
+cookies['key'] - мой ключ
+post['torrent'] = 'MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv'
 
 
 GET /notifications
