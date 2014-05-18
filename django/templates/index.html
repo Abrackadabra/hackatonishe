@@ -14,7 +14,7 @@
                 $.each(data['torrents'], function(index, value) {
                     console.log(value)
                     $('#feed').html( '<div class="entryashka"> \
-                        <a href="'+full+'/chat/'+value['user']+'/init?torrent='+encodeURIComponent(value['text'])+'" class="yay">' + value['text'].substring(0,40) + '...'' + '</a><a href="'+value['link']+'" class="get-torrent"></a><a href="#" class="hide-torrent"></a> \
+                        <a href="'+full+'/chat/'+value['user']+'/init?torrent='+encodeURIComponent(value['text'])+'" class="yay">' + value['text'].substring(0,30) + '...' + '</a><a href="'+value['link']+'" class="get-torrent"></a><a href="#" class="hide-torrent"></a> \
                         </div>' + $('#feed').html());
                 });
             });
