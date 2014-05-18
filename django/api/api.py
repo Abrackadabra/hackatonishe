@@ -165,7 +165,7 @@ def torrent(request):
 
 @require_GET
 def main(request):
-    return HttpResponse('main is not here')
+    return render_to_response('index.html')
 
 
 @require_GET
