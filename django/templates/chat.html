@@ -6,8 +6,10 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
     $( document ).ready(function() {
+
         setInterval( function()
         {
+            console.log(document.URL + "recv")
             $.get( document.URL + "recv", function( data ) {
                 $.each(data['messages'], function(index, value) {
                     $('#box').html("<b> Stranger: </b>" + value + '</br>' + $('#box').html());
@@ -34,7 +36,7 @@
 
 <body>
 <textarea id='msg'></textarea>
-<a onclick='send()' href='#'> SEND </a>
+<a onclick='send()' href='javascript: return(false);'> SEND </a>
 
 <div id='box'>
 </div>

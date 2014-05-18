@@ -36,6 +36,8 @@ def register(request):
 @require_GET
 def chat(request, addressee):
     try:
+        print(request.COOKIES)
+        print(request.GET)
         # key = request.COOKIES['key']
 
         key = 'EEBYFOJUFBULNLTXLDZSSGNZREHXOR'
@@ -95,6 +97,8 @@ def chat_send(request, addressee):
 @require_GET
 def chat_recv(request, addressee):
     try:
+        print(request.COOKIES)
+        print(request.GET)
         # key = request.COOKIES['key']
         key = 'EEBYFOJUFBULNLTXLDZSSGNZREHXOR'
         pony = Pony.objects.get(key=key)
@@ -102,8 +106,6 @@ def chat_recv(request, addressee):
         pony_from = Pony.objects.get(key=addressee)
 
         queue_id = (pony_from, pony)
-
-        print('queue_id', queue_id)
 
         if queue_id not in _message_queues:
             _message_queues[queue_id] = Queue()
@@ -117,6 +119,8 @@ def chat_recv(request, addressee):
                 break
             else:
                 messages.append(queue.get())
+
+        print('messages', messages)
 
         return JsonResponse({
             'messages': messages
