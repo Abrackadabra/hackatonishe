@@ -5,10 +5,17 @@
     </title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ))
+        return matches ? decodeURIComponent(matches[1]) : undefined 
+    }
     $( document ).ready(function() {
-        host = 'http://0.0.0.0:5555'
-        var my_id = 'VEKYAMBAUROQPFPFELBZANSEVECLAO'
-        var stranger_id = 'strgr'
+        host = 'http://0.0.0.0:5555';
+        var my_id = getCookie('key');
+        urlparts = document.URL.split('/');
+        var stranger_id = urlparts[urlparts.length - 1]
         setInterval( function()
         {
             $.get( host + "/chat/" + stranger_id + "/recv", function( data ) {
