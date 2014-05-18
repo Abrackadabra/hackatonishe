@@ -39,11 +39,11 @@ def chat(request, addressee):
     return render_to_response('chat.html')
 
 
-@require_POST
+@require_GET
 def chat_init(request, addressee):
     try:
         key = request.COOKIES['key']
-        torrent = request.POST['torrent']
+        torrent = request.GET['torrent']
 
         pony = Pony.objects.get(key=key)
 

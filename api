@@ -19,9 +19,9 @@ cookies['key'] - мой ключ
 post['message'] = 'Privet'
 
 
-POST /chat/<ключ адресата>/init
+GET /chat/<ключ адресата>/init
 cookies['key'] - мой ключ
-post['torrent'] = 'MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv'
+get['torrent'] = 'MyLittlePony.REPACK.720pp.S03E99.ZVERRELIZ.mkv'
 
 
 GET /notifications

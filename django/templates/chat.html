@@ -15,7 +15,7 @@
             console.log(document.URL + "recv")
             $.get( document.URL + "recv", function( data ) {
                 $.each(data['messages'], function(index, value) {
-                    $('#box').html("<b> Stranger: </b>" + value + '</br>' + $('#box').html());
+                    $('#box').html("<b> Kakoi-to Stranger: </b>" + value + '</br>' + $('#box').html());
                 })
             });
 

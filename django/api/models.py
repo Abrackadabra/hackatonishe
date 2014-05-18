@@ -17,7 +17,8 @@ class Torrent(models.Model):
     def as_dict(self):
         return {
             'user': self.pony.key,
-            'link': self.link
+            'link': self.link,
+            'text': self.text
         }
 
 #
