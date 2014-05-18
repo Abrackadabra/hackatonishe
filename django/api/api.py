@@ -55,7 +55,7 @@ def chat_init(request, addressee):
         queue = _notification_queues[pony]
 
         queue.put({
-            'user': pony_to,
+            'user': pony_to.key,
             'torrent': torrent
         })
 
