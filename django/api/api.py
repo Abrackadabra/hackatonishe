@@ -45,9 +45,13 @@ def chat_init(request, addressee):
         key = request.COOKIES['key']
         torrent = request.GET['torrent']
 
+        print('kt', key, torrent)
+
         pony = Pony.objects.get(key=key)
 
         pony_to = Pony.objects.get(key=addressee)
+
+        print(pony, pony_to)
 
         if pony not in _notification_queues:
             _notification_queues[pony_to] = Queue()
