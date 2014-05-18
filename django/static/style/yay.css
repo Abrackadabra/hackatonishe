@@ -57,6 +57,28 @@ font-weight: normal;
 	margin-right: 30px;
 }
 
+.logo:hover{
+	background-image: url(logo.png);
+}
+
+.small-text{
+	font-size: 14px;
+	width: 550px;
+	height: auto;
+	margin-top: -2px;
+}
+
+.title{
+	font-size: 35px;
+	text-decoration: none;
+	color: #666666;
+	margin-top: -5px;
+}
+
+.title:hover{
+	color: #000;
+}
+
 .notification{
 	width: 65px;
 	height: 65px;
@@ -163,7 +185,8 @@ h1{
 	box-sizing: border-box;
 	width: 600px;
 	height: auto;
-	min-height: 500px;
+	min-height: 400px;
+	margin-bottom: 30px;
 	padding: 15px;
 }
 
@@ -183,6 +206,9 @@ h1{
 	right: 0px;
 }
 
+.send:hover{
+	background-color: #669966;
+}
 
 /* Containers
 ----------------------------------------------------------------------------------------------------*/
