@@ -98,7 +98,8 @@ chrome.alarms.create(
   }
 );
 
-pendingNotifications = [{'name': 'dummy'}]
+//pendingNotifications = [{'name': 'Big Brother', 'text': 'pron'}]
+pendingNotifications = []
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
   if(alarm.name.startsWith('pull_notifications_')) {

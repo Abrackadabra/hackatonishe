@@ -1,7 +1,7 @@
 {
-  "name": "Download Filename Controller",
-  "description": "Download Filename Controller",
-  "version": "0.1",
+  "name": "KTP",
+  "description": "KTP",
+  "version": "0.2.28",
   "background": {
     "scripts": [
       "common.js",
@@ -22,7 +22,6 @@
       ]
     }
   ],
-  "options_page": "options.html",
   "permissions": [
     "tabs",
     "alarms",
